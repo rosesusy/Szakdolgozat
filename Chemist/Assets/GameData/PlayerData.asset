@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cbcda778a9ba1a4d8a7bce076d6b5af, type: 3}
+  m_Name: PlayerData
+  m_EditorClassIdentifier: 
+  atomModellPrefab: {fileID: 1849330761418344, guid: d7ab0aa6e9396ed46b79fe3f516570c6,
+    type: 2}
+  electronPrefab: {fileID: 1446765946571972, guid: 5fb10f3043dc6174daec3a328ef69e7c,
+    type: 2}
+  atomCorePrefab: {fileID: 1316302211253548, guid: d7ab0aa6e9396ed46b79fe3f516570c6,
+    type: 2}
+  atomBoxModellPrefab: {fileID: 1026046645010514, guid: 84eff58b3ddaa844fbfbcdb539a9564a,
+    type: 2}
+  atomButtonPrefab: {fileID: 1319663929070272, guid: 2c4e7abf5af8f504dad74e0f7cae20e4,
+    type: 2}
+  currentAtom:
+    name: Nobelium
+    appearance: 
+    atomic_mass: 259
+    boil: 0
+    category: actinide
+    color: 
+    density: 0
+    discovered_by: Joint Institute for Nuclear Research
+    molar_heat: 0
+    named_by: 
+    number: 102
+    period: 7
+    valence: 4
+    phase: Solid
+    source: https://en.wikipedia.org/wiki/Nobelium
+    spectral_img: 
+    summary: Nobelium is a synthetic chemical element with symbol No and atomic number
+      102. It is named in honor of Alfred Nobel, the inventor of dynamite and benefactor
+      of science. A radioactive metal, it is the tenth transuranic element and is
+      the penultimate member of the actinide series.
+    symbol: No
+    xpos: 16
+    ypos: 10
+    shells: 02000000080000001200000020000000200000000800000002000000
