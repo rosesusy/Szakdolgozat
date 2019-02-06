@@ -1733,7 +1733,7 @@
                 9,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.08
         },
         {
             "name": "Praseodymium",
@@ -1765,7 +1765,7 @@
                 8,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.07
         },
         {
             "name": "Neodymium",
@@ -1797,7 +1797,7 @@
                 8,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.07
         },
         {
             "name": "Promethium",
@@ -1829,12 +1829,14 @@
                 8,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.07
         },
         {
             "name": "Samarium",
             "appearance": "silvery white",
             "atomic_mass": 150.362,
+
+
             "boil": 2173,
             "category": "lanthanide",
             "color": null,
@@ -1861,7 +1863,7 @@
                 8,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.07
         },
         {
             "name": "Europium",
@@ -1893,7 +1895,7 @@
                 8,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.01
         },
         {
             "name": "Gadolinium",
@@ -1925,7 +1927,7 @@
                 9,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.11
         },
         {
             "name": "Terbium",
@@ -1957,7 +1959,7 @@
                 8,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.1
         },
         {
             "name": "Dysprosium",
@@ -1989,7 +1991,7 @@
                 8,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.1
         },
         {
             "name": "Holmium",
@@ -2021,7 +2023,7 @@
                 8,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.1
         },
         {
             "name": "Erbium",
@@ -2053,7 +2055,7 @@
                 8,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.1
         },
         {
             "name": "Thulium",
@@ -2085,7 +2087,7 @@
                 8,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.11
         },
         {
             "name": "Ytterbium",
@@ -2117,7 +2119,7 @@
                 8,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.06
         },
         {
             "name": "Lutetium",
@@ -2149,7 +2151,7 @@
                 9,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.14
         },
         {
             "name": "Hafnium",
@@ -2662,7 +2664,7 @@
                 8,
                 1
             ],
-            "electronnegativity": null
+            "electronnegativity": 0.86
         },
         {
             "name": "Radium",
@@ -2695,7 +2697,7 @@
                 8,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 0.97
         },
         {
             "name": "Actinium",
@@ -2728,7 +2730,7 @@
                 9,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1
         },
         {
             "name": "Thorium",
@@ -2761,7 +2763,7 @@
                 10,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.11
         },
         {
             "name": "Protactinium",
@@ -2794,7 +2796,7 @@
                 9,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.14
         },
         {
             "name": "Uranium",
@@ -2827,7 +2829,7 @@
                 9,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.22
         },
         {
             "name": "Neptunium",
@@ -2860,7 +2862,7 @@
                 9,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.22
         },
         {
             "name": "Plutonium",
@@ -2893,7 +2895,7 @@
                 8,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.22
         },
         {
             "name": "Americium",
@@ -2926,7 +2928,7 @@
                 8,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.2
         },
         {
             "name": "Curium",
@@ -2959,7 +2961,7 @@
                 9,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.2
         },
         {
             "name": "Berkelium",
@@ -2992,7 +2994,7 @@
                 8,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.2
         },
         {
             "name": "Californium",
@@ -3025,7 +3027,7 @@
                 8,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.2
         },
         {
             "name": "Einsteinium",
@@ -3058,7 +3060,7 @@
                 8,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.2
         },
         {
             "name": "Fermium",
@@ -3091,7 +3093,7 @@
                 8,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.2
         },
         {
             "name": "Mendelevium",
@@ -3124,7 +3126,7 @@
                 8,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.2
         },
         {
             "name": "Nobelium",
@@ -3157,7 +3159,7 @@
                 8,
                 2
             ],
-            "electronnegativity": null
+            "electronnegativity": 1.2
         },
         {
             "name": "Lawrencium",
