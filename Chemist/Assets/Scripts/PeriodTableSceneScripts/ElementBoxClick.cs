@@ -22,6 +22,7 @@ public class ElementBoxClick : MonoBehaviour {
             Destroy(oldAtom);
         GameObject newAtom = Instantiate<GameObject>(playerSettings.atomModellPrefab);
         newAtom.GetComponentInChildren<AtomManager>().ElectronNumber = this.GetComponent<PeriodicTableBoxElementAndTextes>().ElectronNumber;
+        
         playerSettings.currentAtom= this.GetComponent<PeriodicTableBoxElementAndTextes>().Current;
     }
     

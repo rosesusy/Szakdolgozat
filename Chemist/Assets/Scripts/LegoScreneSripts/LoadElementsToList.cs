@@ -22,8 +22,10 @@ public class LoadElementsToList : MonoBehaviour {
                 newButton.interactable = false;
             bond = SetBond(e, playerSettings.currentAtom);
             newButton.GetComponentInChildren<ElementButtonTextController>().Bond = bond;
+            newButton.GetComponentInChildren<ElementButtonTextController>().Index = buttons.Count;
             newButton.GetComponentInChildren<ElementButtonTextController>().SetFromElementData(SetQuantity(bond, e, playerSettings.currentAtom), e);
             buttons.Add(newButton);
+      
         }
     }
 	
@@ -51,10 +53,12 @@ public class LoadElementsToList : MonoBehaviour {
         }
     }
 
-    BondTypes SetBond(ElementData bonding_atom, ElementData current_atom)//TODO:Ezeknek a határoknak jobban utánna nézni
+    BondTypes SetBond(ElementData bonding_atom, ElementData current_atom)//TODO:Ezt kitenni statikus osztályba
     {
+        if (current_atom.valence == 0)
+            return BondTypes.None;
         //ionoskötés
-        if (System.Math.Abs(current_atom.electronnegativity - bonding_atom.electronnegativity) >= 2 && current_atom.electronnegativity + bonding_atom.electronnegativity >= 3)
+        else if (System.Math.Abs(current_atom.electronnegativity - bonding_atom.electronnegativity) >= 2 && current_atom.electronnegativity + bonding_atom.electronnegativity >= 3)
             return BondTypes.Ionic;
         //kovalens
         else if (System.Math.Abs(current_atom.electronnegativity - bonding_atom.electronnegativity) <= 1.5 && current_atom.electronnegativity + bonding_atom.electronnegativity >= 3)
@@ -71,7 +75,7 @@ public class LoadElementsToList : MonoBehaviour {
     /// <param name="bonding_atom">Ezt az atomot akarom a bonddal</param>
     /// <param name="current_atom">Ehhez az atomhoz kötni, ő a fő atom</param>
     /// <returns></returns>
-    float SetQuantity(BondTypes bond, ElementData bonding_atom, ElementData current_atom) //TODO:Megcsinálni Ionosa és fémesre is
+    float SetQuantity(BondTypes bond, ElementData bonding_atom, ElementData current_atom) //TODO:Ezt kitenni statikus osztályba
     {
         if (bond.Equals(BondTypes.Covalent))
         {
@@ -82,7 +86,13 @@ public class LoadElementsToList : MonoBehaviour {
         }
         else if (bond.Equals(BondTypes.Ionic))
         {
-
+            int current_atom_last_shell_index = current_atom.shells.Length;
+            int bonding_atom_last_shell_index = bonding_atom.shells.Length;
+            return (8 - current_atom.shells[current_atom_last_shell_index - 1]) /(float) bonding_atom.shells[bonding_atom_last_shell_index - 1];
+        }
+        else if(bond.Equals(BondTypes.Metalic))
+        {
+            //TODO:Megcsinálni ide a fémes kötéshez tartozó cuccost
         }
         return 0;
     }

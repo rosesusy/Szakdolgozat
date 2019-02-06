@@ -10,6 +10,8 @@ public class ElementButtonTextController : MonoBehaviour {
 
     public BondTypes Bond { get; set; }
 
+    public int Index { get; set; }
+
     TextMeshProUGUI[] texts;
     void Start()
     {

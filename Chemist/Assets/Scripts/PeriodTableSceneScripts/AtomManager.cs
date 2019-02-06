@@ -11,17 +11,15 @@ public class AtomManager : MonoBehaviour {
     public GameObject core;
     private int electronNumber;
     private GameObject[] electrons;
-
     void Start () {
         float coreX = core.transform.position.x;
         float coreY = core.transform.position.y;
         float coreZ = core.transform.position.z;
-
-        text.text = ElectronNumber.ToString();
+       text.text = ElectronNumber.ToString();
         electrons = new GameObject[ElectronNumber];
         for (int i = 0; i < ElectronNumber; i++)
         {
-            if (i < 2) {
+           if (i < 2) {
                 electrons[i] = Instantiate(electronPrefab, new Vector3(coreX, coreY+MIN_DISTANCE , coreZ), Quaternion.identity, this.transform);
                 electrons[i].GetComponent<AtomElctronSpin>().LEVEL = 1;
                 electrons[i].GetComponent<AtomElctronSpin>().speed = Mathf.Pow(-1,i)*SPEED-i*10;
@@ -94,4 +92,6 @@ public class AtomManager : MonoBehaviour {
             electronNumber = value;
         }
     }
+
+   
 }

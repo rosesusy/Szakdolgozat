@@ -8,6 +8,7 @@ TagManager:
   - AtomModell
   - electron
   - popup
+  - chemistAtomModel
   layers:
   - Default
   - TransparentFX
