@@ -42,14 +42,18 @@ public class ChemistAtomModell : MonoBehaviour {
             for (int i = 0; i <this.valenceElectrons.Length; i++)
             {
                 this.valenceElectrons[i] = Instantiate(chemistElectronModel,new Vector3(x,y,z), Quaternion.identity, this.transform);
+                this.valenceElectrons[i].SetActive(true);
                 this.valenceElectrons[i].transform.Rotate(0, 0,min_rotation_degree * i );
                 this.valenceElectrons[i].transform.Translate(new Vector3(MIN_DISTANCE,0,0));
 
              }
         }
 	}
-	
-	
+    private void Update()
+    {
+        
+    }
+
     public void GetDataFromTheList(ElementData e)
     {
         this.ValenceElectronNumber=e.valence;

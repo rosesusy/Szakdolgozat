@@ -58,7 +58,7 @@ public class LoadElementsToList : MonoBehaviour {
         if (current_atom.valence == 0)
             return BondTypes.None;
         //ionoskötés
-        else if (System.Math.Abs(current_atom.electronnegativity - bonding_atom.electronnegativity) >= 2 && current_atom.electronnegativity + bonding_atom.electronnegativity >= 3)
+        else if (System.Math.Abs(current_atom.electronnegativity - bonding_atom.electronnegativity) >1.5 && current_atom.electronnegativity + bonding_atom.electronnegativity >= 3)
             return BondTypes.Ionic;
         //kovalens
         else if (System.Math.Abs(current_atom.electronnegativity - bonding_atom.electronnegativity) <= 1.5 && current_atom.electronnegativity + bonding_atom.electronnegativity >= 3)

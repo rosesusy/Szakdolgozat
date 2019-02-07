@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\LegoScreneSripts\CameraSript.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\ChemistAtomModell.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\ChemistElectronModel.cs" />
+    <Compile Include="Assets\Scripts\LegoScreneSripts\DragAndDropAtom.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\ElementButtonTextController.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\Game.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\LoadElementsToList.cs" />
