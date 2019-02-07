@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\LegoScreneSripts\DragAndDropAtom.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\ElementButtonTextController.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\Game.cs" />
+    <Compile Include="Assets\Scripts\LegoScreneSripts\IonModell.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\LoadElementsToList.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\LoadToEnter.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\OnButtonClick.cs" />

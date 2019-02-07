@@ -16,7 +16,7 @@ public class ChemistElectronModel : MonoBehaviour {
     {
         if (atomCore != null)
         {
-            transform.RotateAround(atomCore.transform.position, rot, Time.deltaTime * speed);
+            transform.RotateAround(this.transform.parent.transform.position, rot, Time.deltaTime * speed);
 
         }
     }

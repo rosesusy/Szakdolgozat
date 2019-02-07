@@ -7,6 +7,6 @@ public class OnButtonClick : MonoBehaviour {
     
 	public void CreateModel(GameObject game)
     {
-        game.GetComponent<Game>().CreateChemistModell(GetComponent<ElementButtonTextController>().Index);
+        game.GetComponent<Game>().CreateChemistModell(GetComponent<ElementButtonTextController>().Index, GetComponent<ElementButtonTextController>().Bond);
     }
 }
