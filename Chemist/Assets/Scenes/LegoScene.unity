@@ -401,7 +401,8 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114649795168221218, guid: fd2fddd244fd30f4cbbfca4bd6cb88d5, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: fd2fddd244fd30f4cbbfca4bd6cb88d5, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &339423877
@@ -659,7 +660,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.019607844}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1863,6 +1864,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1902376156 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1529974996225232, guid: fd2fddd244fd30f4cbbfca4bd6cb88d5,
+    type: 2}
+  m_PrefabInternal: {fileID: 159838185}
+--- !u!114 &1902376157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1902376156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d24032f8ea3118e42b6fa858dac341f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1932025199
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class ChemistAtomModell : MonoBehaviour
 {
+
     public GameObject chemistElectronModel;
     public TextMeshPro symbol;
     public GameObject ionModell;
@@ -82,7 +83,7 @@ public class ChemistAtomModell : MonoBehaviour
             float rotation_degree = 360 / this.valenceElectrons.Count;
             for (int i = 0; i < this.valenceElectrons.Count; i++)
             {
-                valenceElectrons[i].transform.SetPositionAndRotation(new Vector3(transform.parent.transform.position.x, transform.parent.transform.position.y, transform.parent.transform.position.z), Quaternion.identity);
+                valenceElectrons[i].transform.SetPositionAndRotation(valenceElectrons[i].transform.parent.position, Quaternion.identity);
                 valenceElectrons[i].transform.Rotate(0, 0, rotation_degree * i);
                 valenceElectrons[i].transform.Translate(new Vector3(MIN_DISTANCE, 0, 0));
             }
@@ -92,26 +93,25 @@ public class ChemistAtomModell : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         ChemistAtomModell other_atom = other.gameObject.GetComponent<ChemistAtomModell>();
-        if (!other_atom.is_in_a_bond && other_atom.Bond == BondTypes.Ionic &&this.ElectronCount>0)
+        if (!other_atom.is_in_a_bond && other_atom.Bond == BondTypes.Ionic && this.ElectronCount > 0 && other_atom.ElectronCount > 0 )
         {
-            GameObject newIon = Instantiate(ionModell);
+
+            other.gameObject.GetComponent<DragAndDropAtom>().DropMouse();
+            this.gameObject.GetComponent<DragAndDropAtom>().DropMouse();
             int otherAtomNumber = other_atom.Index;
             int thisAtomNumber = this.Index;
-            this.is_in_a_bond = true;
-            other_atom.is_in_a_bond = true;
             if (LoadPeriodicTable.table[otherAtomNumber].electronnegativity > LoadPeriodicTable.table[thisAtomNumber].electronnegativity)
             {
                 if (other_atom.ElectronCount < 8)
                 {
                     CopyElectronsToOtherAtom(this, other_atom);
                     other_atom.changeElectrons = true;
-                    other.gameObject.transform.SetParent(newIon.transform, false);
-                    this.transform.SetParent(newIon.transform, false);
+                    this.is_in_a_bond = true;
+                    other_atom.is_in_a_bond = true;
+                    this.CreateIon(other.gameObject, this.gameObject);
+                    //LoadElementsToList.RefreshButtonDatas(LoadPeriodicTable.table[otherAtomNumber]);
                 }
-                else
-                {
-                   Destroy(newIon);
-                }
+              
             }
             else
             {
@@ -119,15 +119,13 @@ public class ChemistAtomModell : MonoBehaviour
                 {
                     CopyElectronsToOtherAtom(other_atom, this);
                     this.changeElectrons = true;
-                    other.gameObject.transform.SetParent(newIon.transform, false);
-                    this.transform.SetParent(newIon.transform, false);
-                }
-                else
-                {
-                   Destroy(newIon);
+                    this.is_in_a_bond = true;
+                    other_atom.is_in_a_bond = true;
+                    this.CreateIon(other.gameObject, this.gameObject);
+                    //LoadElementsToList.RefreshButtonDatas(LoadPeriodicTable.table[thisAtomNumber]);
                 }
             }
-            
+
         }
     }
     private void CopyElectronsToOtherAtom(ChemistAtomModell from, ChemistAtomModell to)
@@ -137,9 +135,25 @@ public class ChemistAtomModell : MonoBehaviour
             to.AddElectron(from[i]);
             to.LastElectron().transform.SetParent(to.transform);
         }
+        for (int i = from.ElectronCount-1; i>=0; i--)
+        {
+            from.RemoveElectron(from[i]);
+        }
     }
 
-
+    private void CreateIon(GameObject other, GameObject this_one )
+    {
+        if (other.transform.parent != null)
+            this_one.transform.SetParent(other.transform.parent.transform);
+        else if (this_one.transform.parent != null)
+            other.gameObject.transform.SetParent(this_one.transform.parent.transform);
+        else
+        {
+            GameObject newIon = Instantiate(ionModell);
+            other.gameObject.transform.SetParent(newIon.transform);
+            this_one.transform.SetParent(newIon.transform);
+        }
+    }
     public void GetDataFromTheList(ElementData e)
     {
         this.ValenceElectronNumber = e.valence;

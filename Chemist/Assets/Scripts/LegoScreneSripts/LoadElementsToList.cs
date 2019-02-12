@@ -9,18 +9,21 @@ public class LoadElementsToList : MonoBehaviour {
     public PlayerSettings playerSettings;
     // Use this for initialization
     public Button buttonPrefab;
-    List<Button> buttons;
+   static List<Button> buttons;
 
     void Start () {
         BondTypes bond;
+        float quantity;
         CheckTheElementList();
         buttons = new List<Button>();
         foreach (ElementData e in LoadPeriodicTable.table)
         {
             Button newButton = Instantiate(buttonPrefab, this.transform);
-            if (e.valence == 0)
-                newButton.interactable = false;
+            
             bond = SetBond(e, playerSettings.currentAtom);
+            quantity = SetQuantity(bond, e, playerSettings.currentAtom);
+            if (e.valence == 0||quantity==0)
+                newButton.interactable = false;
             newButton.GetComponentInChildren<ElementButtonTextController>().Bond = bond;
             newButton.GetComponentInChildren<ElementButtonTextController>().Index = buttons.Count;
             newButton.GetComponentInChildren<ElementButtonTextController>().SetFromElementData(SetQuantity(bond, e, playerSettings.currentAtom), e);
@@ -42,18 +45,22 @@ public class LoadElementsToList : MonoBehaviour {
         }
     }
 
-    public void RefreshButtonDatas(ElementData current_atom)
+    public static void RefreshButtonDatas(ElementData current_atom)
     {
         BondTypes bond;
+        float quantity;
         for (int i = 0; i < buttons.Count; i++)
         {
             bond = SetBond(LoadPeriodicTable.table[i], current_atom);
+            quantity = SetQuantity(bond, LoadPeriodicTable.table[i], current_atom);
+            if (LoadPeriodicTable.table[i].valence == 0 || quantity == 0)
+                buttons[i].interactable = false;
             buttons[i].GetComponentInChildren<ElementButtonTextController>().Bond = bond;
             buttons[i].GetComponentInChildren<ElementButtonTextController>().SetFromElementData(SetQuantity(bond, LoadPeriodicTable.table[i], current_atom));
         }
     }
 
-    BondTypes SetBond(ElementData bonding_atom, ElementData current_atom)//TODO:Ezt kitenni statikus osztályba
+    static BondTypes SetBond(ElementData bonding_atom, ElementData current_atom)//TODO:Ezt kitenni statikus osztályba
     {
         if (current_atom.valence == 0)
             return BondTypes.None;
@@ -75,7 +82,7 @@ public class LoadElementsToList : MonoBehaviour {
     /// <param name="bonding_atom">Ezt az atomot akarom a bonddal</param>
     /// <param name="current_atom">Ehhez az atomhoz kötni, ő a fő atom</param>
     /// <returns></returns>
-    float SetQuantity(BondTypes bond, ElementData bonding_atom, ElementData current_atom) //TODO:Ezt kitenni statikus osztályba
+   static float SetQuantity(BondTypes bond, ElementData bonding_atom, ElementData current_atom) //TODO:Ezt kitenni statikus osztályba
     {
         if (bond.Equals(BondTypes.Covalent))
         {

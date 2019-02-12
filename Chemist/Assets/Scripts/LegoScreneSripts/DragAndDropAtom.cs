@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragAndDropAtom : MonoBehaviour {
+public class DragAndDropAtom : MonoBehaviour
+{
 
     private bool _mouseState;
     private GameObject atom;
@@ -18,7 +19,8 @@ public class DragAndDropAtom : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        // Debug.Log(_mouseState);
+
+        //Debug.Log(_mouseState);
         if (Input.GetMouseButtonDown(0))
         {
 
@@ -55,9 +57,16 @@ public class DragAndDropAtom : MonoBehaviour {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray.origin, ray.direction * 10, out hit))
         {
-            target = hit.collider.gameObject;
+            target=hit.collider.gameObject;
+            if (target.GetComponent<ChemistAtomModell>().is_in_a_bond)
+                target = hit.collider.gameObject.transform.parent.gameObject;
         }
 
         return target;
+    }
+
+    public void DropMouse()
+    {
+        _mouseState = false;
     }
 }
