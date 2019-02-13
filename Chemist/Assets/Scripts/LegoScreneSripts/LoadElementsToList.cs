@@ -22,11 +22,11 @@ public class LoadElementsToList : MonoBehaviour {
             
             bond = SetBond(e, playerSettings.currentAtom);
             quantity = SetQuantity(bond, e, playerSettings.currentAtom);
-            if (e.valence == 0||quantity==0)
+            if (e.valence == 0)
                 newButton.interactable = false;
             newButton.GetComponentInChildren<ElementButtonTextController>().Bond = bond;
             newButton.GetComponentInChildren<ElementButtonTextController>().Index = buttons.Count;
-            newButton.GetComponentInChildren<ElementButtonTextController>().SetFromElementData(SetQuantity(bond, e, playerSettings.currentAtom), e);
+            newButton.GetComponentInChildren<ElementButtonTextController>().SetFromElementData(quantity, e);
             buttons.Add(newButton);
       
         }
@@ -53,10 +53,25 @@ public class LoadElementsToList : MonoBehaviour {
         {
             bond = SetBond(LoadPeriodicTable.table[i], current_atom);
             quantity = SetQuantity(bond, LoadPeriodicTable.table[i], current_atom);
-            if (LoadPeriodicTable.table[i].valence == 0 || quantity == 0)
+            if (LoadPeriodicTable.table[i].valence == 0 )
                 buttons[i].interactable = false;
             buttons[i].GetComponentInChildren<ElementButtonTextController>().Bond = bond;
-            buttons[i].GetComponentInChildren<ElementButtonTextController>().SetFromElementData(SetQuantity(bond, LoadPeriodicTable.table[i], current_atom));
+            buttons[i].GetComponentInChildren<ElementButtonTextController>().SetFromElementData(quantity);
+        }
+    }
+
+    public static void RefreshButtonData(GameObject current_atom)
+    {
+        BondTypes bond;
+        float quantity;
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            bond = SetBond(LoadPeriodicTable.table[i], LoadPeriodicTable.table[current_atom.GetComponent<ChemistAtomModell>().Index]);
+            quantity = SetQuantityInABond(bond, LoadPeriodicTable.table[i], current_atom);
+            if (LoadPeriodicTable.table[i].valence == 0)
+                buttons[i].interactable = false;
+            buttons[i].GetComponentInChildren<ElementButtonTextController>().Bond = bond;
+            buttons[i].GetComponentInChildren<ElementButtonTextController>().SetFromElementData(quantity);
         }
     }
 
@@ -75,6 +90,7 @@ public class LoadElementsToList : MonoBehaviour {
             return BondTypes.Metalic;
         return BondTypes.None;
     }
+   
     /// <summary>
     /// 
     /// </summary>
@@ -82,7 +98,7 @@ public class LoadElementsToList : MonoBehaviour {
     /// <param name="bonding_atom">Ezt az atomot akarom a bonddal</param>
     /// <param name="current_atom">Ehhez az atomhoz kötni, ő a fő atom</param>
     /// <returns></returns>
-   static float SetQuantity(BondTypes bond, ElementData bonding_atom, ElementData current_atom) //TODO:Ezt kitenni statikus osztályba
+    static float SetQuantity(BondTypes bond, ElementData bonding_atom, ElementData current_atom) //TODO:Ezt kitenni statikus osztályba
     {
         if (bond.Equals(BondTypes.Covalent))
         {
@@ -103,4 +119,27 @@ public class LoadElementsToList : MonoBehaviour {
         }
         return 0;
     }
+
+    static float SetQuantityInABond(BondTypes bond, ElementData bonding_atom, GameObject current_atom) //TODO:Ezt kitenni statikus osztályba
+    {
+        if (bond.Equals(BondTypes.Covalent))
+        {
+            //TODO:Megcsinálni a kovalens kötéshez
+        }
+        else if (bond.Equals(BondTypes.Ionic))
+        {
+            int current_atom_valence_electrons = current_atom.GetComponent<ChemistAtomModell>().ElectronCount;
+            int bonding_atom_last_shell_index = bonding_atom.shells.Length;
+            if (current_atom_valence_electrons < 8 && current_atom_valence_electrons > 0)
+                return (8 - current_atom.GetComponent<ChemistAtomModell>().ElectronCount) / (float)bonding_atom.shells[bonding_atom_last_shell_index - 1];
+            else
+                return 0;
+        }
+        else if (bond.Equals(BondTypes.Metalic))
+        {
+            //TODO:Megcsinálni ide a fémes kötéshez tartozó cuccost
+        }
+        return 0;
+    }
+
 }

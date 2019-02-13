@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\LegoScreneSripts\LoadElementsToList.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\LoadToEnter.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\OnButtonClick.cs" />
+    <Compile Include="Assets\Scripts\LegoScreneSripts\RefreshList.cs" />
     <Compile Include="Assets\Scripts\MenuSceneScripts\LoadSceneOnClick.cs" />
     <Compile Include="Assets\Scripts\MenuSceneScripts\QuitOnClick.cs" />
     <Compile Include="Assets\Scripts\MenuSceneScripts\QuitOnEnter.cs" />

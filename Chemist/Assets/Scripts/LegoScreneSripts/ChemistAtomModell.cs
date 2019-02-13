@@ -109,7 +109,7 @@ public class ChemistAtomModell : MonoBehaviour
                     this.is_in_a_bond = true;
                     other_atom.is_in_a_bond = true;
                     this.CreateIon(other.gameObject, this.gameObject);
-                    //LoadElementsToList.RefreshButtonDatas(LoadPeriodicTable.table[otherAtomNumber]);
+                    LoadElementsToList.RefreshButtonData(other.gameObject);
                 }
               
             }
@@ -122,7 +122,7 @@ public class ChemistAtomModell : MonoBehaviour
                     this.is_in_a_bond = true;
                     other_atom.is_in_a_bond = true;
                     this.CreateIon(other.gameObject, this.gameObject);
-                    //LoadElementsToList.RefreshButtonDatas(LoadPeriodicTable.table[thisAtomNumber]);
+                    LoadElementsToList.RefreshButtonData(this.gameObject);
                 }
             }
 

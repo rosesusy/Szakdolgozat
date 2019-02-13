@@ -31,6 +31,7 @@ public class DragAndDropAtom : MonoBehaviour
                 _mouseState = true;
                 screenSpace = Camera.main.WorldToScreenPoint(atom.transform.position);
                 offset = atom.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenSpace.z));
+
             }
         }
         if (Input.GetMouseButtonUp(0))
@@ -48,6 +49,11 @@ public class DragAndDropAtom : MonoBehaviour
             //update the position of the object in the world
             atom.transform.position = curPosition;
         }
+        if(Input.GetMouseButton(1))
+        {
+            RaycastHit hitInf;
+            DestroyAtom(GetClickedObject(out hitInf));
+        }
     }
 
 
@@ -63,6 +69,11 @@ public class DragAndDropAtom : MonoBehaviour
         }
 
         return target;
+    }
+
+    void DestroyAtom(GameObject atom)
+    {
+        Destroy(atom);
     }
 
     public void DropMouse()
