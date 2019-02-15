@@ -122,16 +122,18 @@ public class LoadElementsToList : MonoBehaviour {
 
     static float SetQuantityInABond(BondTypes bond, ElementData bonding_atom, GameObject current_atom) //TODO:Ezt kitenni statikus osztályba
     {
+        ChemistAtomModell current_atom_modell = current_atom.GetComponent<ChemistAtomModell>();
         if (bond.Equals(BondTypes.Covalent))
         {
             //TODO:Megcsinálni a kovalens kötéshez
+            return LoadPeriodicTable.table[ current_atom_modell.Index].valence-current_atom_modell.CovalentBoundNumber/ (float)bonding_atom.valence;
         }
         else if (bond.Equals(BondTypes.Ionic))
         {
             int current_atom_valence_electrons = current_atom.GetComponent<ChemistAtomModell>().ElectronCount;
             int bonding_atom_last_shell_index = bonding_atom.shells.Length;
             if (current_atom_valence_electrons < 8 && current_atom_valence_electrons > 0)
-                return (8 - current_atom.GetComponent<ChemistAtomModell>().ElectronCount) / (float)bonding_atom.shells[bonding_atom_last_shell_index - 1];
+                return (8 - current_atom_modell.ElectronCount) / (float)bonding_atom.shells[bonding_atom_last_shell_index - 1];
             else
                 return 0;
         }

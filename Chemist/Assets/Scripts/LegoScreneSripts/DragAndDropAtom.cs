@@ -25,7 +25,7 @@ public class DragAndDropAtom : MonoBehaviour
         {
 
             RaycastHit hitInfo;
-            atom = GetClickedObject(out hitInfo);
+            atom = Utility.GetClickedObject(out hitInfo);
             if (atom != null)
             {
                 _mouseState = true;
@@ -52,30 +52,18 @@ public class DragAndDropAtom : MonoBehaviour
         if(Input.GetMouseButton(1))
         {
             RaycastHit hitInf;
-            DestroyAtom(GetClickedObject(out hitInf));
+            DestroyAtom(Utility.GetClickedObject(out hitInf));
         }
     }
 
 
-    GameObject GetClickedObject(out RaycastHit hit)
-    {
-        GameObject target = null;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray.origin, ray.direction * 10, out hit))
-        {
-            target=hit.collider.gameObject;
-            if (target.GetComponent<ChemistAtomModell>().is_in_a_bond)
-                target = hit.collider.gameObject.transform.parent.gameObject;
-        }
-
-        return target;
-    }
+   
 
     void DestroyAtom(GameObject atom)
     {
         Destroy(atom);
     }
-
+   
     public void DropMouse()
     {
         _mouseState = false;

@@ -6,7 +6,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ElementButtonTextController : MonoBehaviour {
+public class ElementButtonTextController : MonoBehaviour
+{
 
     public BondTypes Bond { get; set; }
 
@@ -15,7 +16,7 @@ public class ElementButtonTextController : MonoBehaviour {
     TextMeshProUGUI[] texts;
     void Start()
     {
-        
+
     }
     public void SetFromElementData(float quantity, Chemist.ElementData element)
     {
@@ -25,8 +26,7 @@ public class ElementButtonTextController : MonoBehaviour {
 
     internal void SetFromElementData(float quantity)
     {
-        if (Bond != null)
-            SetColorFromBond();
+        SetColorFromBond();
         if (texts == null)
             texts = this.GetComponentsInChildren<TextMeshProUGUI>();
         texts[1].text = quantity.ToString();

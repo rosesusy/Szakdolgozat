@@ -10,6 +10,8 @@ TagManager:
   - popup
   - chemistAtomModel
   - chemistElectronModel
+  - c_side_atom
+  - c_core_atom
   layers:
   - Default
   - TransparentFX

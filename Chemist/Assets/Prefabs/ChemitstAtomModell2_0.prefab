@@ -378,9 +378,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d948a8e8b82019543819d98d9ad5d139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chemistElectronModel: {fileID: 1514983806594818}
   symbol: {fileID: 114036380054856986}
-  ionModell: {fileID: 1475965461004284, guid: b6da1601c3cca454f86f243c65050c10, type: 2}
+  playerSettings: {fileID: 11400000, guid: 6279ee2c14dad0e42846ebf817292088, type: 2}
   is_in_a_bond: 0
   changeElectrons: 0
 --- !u!114 &114186469088867146

@@ -11,7 +11,9 @@ public class PlayerSettings : ScriptableObject
     public GameObject atomCorePrefab;
     public GameObject atomBoxModellPrefab;
     public GameObject atomButtonPrefab;
-    
+    public GameObject chemistElectronModel;
+    public GameObject ionModell;
+    public GameObject ax4_e0;
     //public GameObject playerTwoBulletPrefab;
     //[Range(0.1f, 3f)] public float bulletspeed = 0.2f;
     //[Range(0.1f, 3f)] public float speed = 0.1f;

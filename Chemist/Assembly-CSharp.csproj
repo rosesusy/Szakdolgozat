@@ -87,6 +87,7 @@
     <Compile Include="Assets\Scripts\PeriodTableSceneScripts\LoadOnEnter.cs" />
     <Compile Include="Assets\Scripts\PeriodTableSceneScripts\LoadPeriodicTable.cs" />
     <Compile Include="Assets\Scripts\PeriodTableSceneScripts\PeriodicTableBoxElementAndTextes.cs" />
+    <Compile Include="Assets\Scripts\Utility.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\Audio\Notes.txt" />
