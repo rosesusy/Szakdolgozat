@@ -30,6 +30,7 @@ public class CameraSript : MonoBehaviour {
             // Get mouse origin
             mouseOrigin = Input.mousePosition;
             isRotating = true;
+           
         }
 
         // Get the right mouse button

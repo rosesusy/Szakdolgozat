@@ -25,29 +25,40 @@ MonoBehaviour:
     type: 2}
   ionModell: {fileID: 1475965461004284, guid: b6da1601c3cca454f86f243c65050c10, type: 2}
   ax4_e0: {fileID: 1559131484424096, guid: 76a28cbabc8ac1c43befad98a4dd28e1, type: 2}
+  ax1e3: {fileID: 1744063153096700, guid: 0e65e174e60b78d43886724a91710c5d, type: 2}
+  ax2e0: {fileID: 1193727267503714, guid: 3a649a3ed4b2c69408f1e6af9d32bc68, type: 2}
+  ax2e1: {fileID: 1647508358125058, guid: 2f68e9dfd1b4a6848938755056bb89f8, type: 2}
+  ax2e2: {fileID: 1960078881957270, guid: 0118f318680315146a54dea3a447f3f3, type: 2}
+  ax3e0: {fileID: 1521586908558250, guid: af9dfed3354d20947a1bcef8f3010dcb, type: 2}
+  ax3e1: {fileID: 1569155690578380, guid: 5dd0e42ce30582d4db7bcc43bc33a6ae, type: 2}
+  ax5e0: {fileID: 0}
+  ax6e0: {fileID: 0}
+  ax7e0: {fileID: 0}
+  ax8e0: {fileID: 0}
   currentAtom:
-    name: Nobelium
+    name: Carbon
     appearance: 
-    atomic_mass: 259
+    atomic_mass: 12.011
     boil: 0
-    category: actinide
+    category: polyatomic nonmetal
     color: 
-    density: 0
-    discovered_by: Joint Institute for Nuclear Research
-    molar_heat: 0
+    density: 1.821
+    discovered_by: Ancient Egypt
+    molar_heat: 8.517
     named_by: 
-    number: 102
-    period: 7
+    number: 6
+    period: 2
     valence: 4
     phase: Solid
-    source: https://en.wikipedia.org/wiki/Nobelium
-    spectral_img: 
-    summary: Nobelium is a synthetic chemical element with symbol No and atomic number
-      102. It is named in honor of Alfred Nobel, the inventor of dynamite and benefactor
-      of science. A radioactive metal, it is the tenth transuranic element and is
-      the penultimate member of the actinide series.
-    symbol: No
-    xpos: 16
-    ypos: 10
-    shells: 02000000080000001200000020000000200000000800000002000000
-    electronnegativity: 0
+    source: https://en.wikipedia.org/wiki/Carbon
+    spectral_img: https://en.wikipedia.org/wiki/File:Carbon_Spectra.jpg
+    summary: "Carbon (from Latin:carbo \"coal\") is a chemical element with symbol
+      C and atomic number 6. On the periodic table, it is the first (row 2) of six
+      elements in column (group) 14, which have in common the composition of their
+      outer electron shell. It is nonmetallic and tetravalent\u2014making four electrons
+      available to form covalent chemical bonds."
+    symbol: C
+    xpos: 14
+    ypos: 2
+    shells: 0200000004000000
+    electronnegativity: 2.5

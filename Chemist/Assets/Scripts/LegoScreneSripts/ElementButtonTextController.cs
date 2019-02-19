@@ -42,7 +42,7 @@ public class ElementButtonTextController : MonoBehaviour
         else if (Bond.Equals(BondTypes.Metalic))
             temp.normalColor = Color.white;
         else if (Bond.Equals(BondTypes.None))
-            this.GetComponent<Button>().interactable = false;
+            temp.normalColor = Color.grey;
         this.GetComponent<Button>().colors = temp;
     }
 }

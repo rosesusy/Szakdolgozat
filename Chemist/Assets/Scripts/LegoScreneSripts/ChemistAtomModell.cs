@@ -14,7 +14,6 @@ public class ChemistAtomModell : MonoBehaviour
     private int index;
     private const int MIN_DISTANCE = 1;
     private List<GameObject> valenceElectrons;
-
     public bool is_in_a_bond = false;
     public bool changeElectrons = false;
 
@@ -60,6 +59,8 @@ public class ChemistAtomModell : MonoBehaviour
 
     void Start()
     {
+        playerSettings.SetAllCovalentModell();
+
         float x = this.transform.position.x;
         float y = this.transform.position.y;
         float z = this.transform.position.z;
@@ -67,7 +68,6 @@ public class ChemistAtomModell : MonoBehaviour
         if (this.LastShellPopulation != 0)
         {
             float min_rotation_degree = 360 / this.LastShellPopulation;
-            // this.valenceElectrons = new GameObject[ValenceElectronNumber];
             this.valenceElectrons = new List<GameObject>();
             for (int i = 0; i < this.LastShellPopulation; i++)
             {
@@ -98,34 +98,8 @@ public class ChemistAtomModell : MonoBehaviour
         int otherAtomNumber;
         int thisAtomNumber;
         ChemistAtomModell other_atom = other.gameObject.GetComponent<ChemistAtomModell>();
-        if (other_atom.Bond == BondTypes.Covalent)
-        {
-            other.gameObject.GetComponent<DragAndDropAtom>().DropMouse();
-            this.gameObject.GetComponent<DragAndDropAtom>().DropMouse();
-            otherAtomNumber = other_atom.Index;
-            thisAtomNumber = this.Index;
-            int otherAtomValence = LoadPeriodicTable.table[otherAtomNumber].valence;
-            int otherAtomLastShellNumber = other_atom.LastShellPopulation;
-            int thisAtomValence = LoadPeriodicTable.table[thisAtomNumber].valence;
-            int thisAtomLastShellNumber = this.LastShellPopulation;
-           
-            if (other_atom.CovalentBoundNumber < otherAtomValence)
-            {
-                if (otherAtomNumber == thisAtomNumber)//ha ugyanazokat akrjuk összerakni
-                {
-
-                }
-                else if (otherAtomValence > thisAtomValence)//ha a másik atom tud több atomhoz kapcsolódni, ő lesz a modell közepén
-                {
-                    CreateMolecula(other.gameObject, this.gameObject, otherAtomValence, otherAtomLastShellNumber);
-                }
-                else//ha nem akkor pedig ez
-                {
-                    CreateMolecula(this.gameObject, other.gameObject, thisAtomValence, thisAtomLastShellNumber);
-                }
-            }
-        }
-        if ( other_atom.Bond == BondTypes.Ionic && !other_atom.is_in_a_bond && this.ElectronCount > 0 && other_atom.ElectronCount > 0)
+        
+        if ( other_atom.Bond.Equals(BondTypes.Ionic) && (this.Bond.Equals(BondTypes.Ionic)||this.Bond.Equals(BondTypes.None))&& !other_atom.is_in_a_bond && this.ElectronCount > 0 && other_atom.ElectronCount > 0)
         {
 
             other.gameObject.GetComponent<DragAndDropAtom>().DropMouse();
@@ -159,6 +133,33 @@ public class ChemistAtomModell : MonoBehaviour
             }
 
         }
+       else if (other_atom.Bond.Equals(BondTypes.Covalent)&& (this.Bond.Equals(BondTypes.Covalent) || this.Bond.Equals(BondTypes.None)) &&!other_atom.is_in_a_bond)
+        {
+            other.gameObject.GetComponent<DragAndDropAtom>().DropMouse();
+            this.gameObject.GetComponent<DragAndDropAtom>().DropMouse();
+            otherAtomNumber = other_atom.Index;
+            thisAtomNumber = this.Index;
+            int otherAtomValence = LoadPeriodicTable.table[otherAtomNumber].valence;
+            int otherAtomLastShellNumber = other_atom.LastShellPopulation;
+            int thisAtomValence = LoadPeriodicTable.table[thisAtomNumber].valence;
+            int thisAtomLastShellNumber = this.LastShellPopulation;
+
+            if (other_atom.CovalentBoundNumber < otherAtomValence)
+            {
+                if (otherAtomNumber == thisAtomNumber)//ha ugyanazokat akrjuk összerakni
+                {
+
+                }
+                else if (otherAtomValence > thisAtomValence)//ha a másik atom tud több atomhoz kapcsolódni, ő lesz a modell közepén
+                {
+                    CreateMolecula(other.gameObject, this.gameObject, otherAtomValence, otherAtomLastShellNumber,thisAtomValence);
+                }
+                else//ha nem akkor pedig ez
+                {
+                    CreateMolecula(this.gameObject, other.gameObject, thisAtomValence, thisAtomLastShellNumber,otherAtomValence);
+                }
+            }
+        }
     }
     private void CopyElectronsToOtherAtom(ChemistAtomModell from, ChemistAtomModell to)
     {
@@ -186,7 +187,7 @@ public class ChemistAtomModell : MonoBehaviour
         }
     }
 
-    private void CreateMolecula(GameObject core_atom, GameObject side_atom,int core_atom_valence, int core_atom_last_shell_number)
+    private void CreateMolecula(GameObject core_atom, GameObject side_atom,int core_atom_valence, int core_atom_last_shell_number, int side_atom_valance)
     {
         GameObject molecula = null;
         if (core_atom.transform.parent == null)
@@ -198,72 +199,35 @@ public class ChemistAtomModell : MonoBehaviour
             molecula = Utility.GetFinalParent(core_atom);
         }
         GameObject core = Utility.FindObjectWithTag(molecula.transform, "c_core_atom"); //lekérjük a coret
-        core_atom.transform.SetParent(core.transform);//beilleszük a coreba a másik atomot
-        core_atom.transform.SetPositionAndRotation(core.transform.position, Quaternion.identity);
-        core_atom.GetComponent<ChemistAtomModell>().is_in_a_bond = true;
-        List<GameObject> bondedAtomsPlaces = Utility.FindObjectsWithTag(molecula.transform, "c_side_atom");//lekérjuk a csatlakozások helyét
-
-        for (int i = 0; i < bondedAtomsPlaces.Count; i++)
+        if (core != null)
         {
-            if (bondedAtomsPlaces[i].transform.childCount == 0)
+            core_atom.transform.SetParent(core.transform);//beilleszük a coreba a másik atomot
+            core_atom.transform.SetPositionAndRotation(core.transform.position, Quaternion.identity);
+            core_atom.GetComponent<ChemistAtomModell>().is_in_a_bond = true;
+            List<GameObject> bondedAtomsPlaces = Utility.FindObjectsWithTag(molecula.transform, "c_side_atom");//lekérjuk a csatlakozások helyét
+
+            for (int i = 0; i < bondedAtomsPlaces.Count; i++)
             {
-                side_atom.GetComponent<ChemistAtomModell>().is_in_a_bond = true;
-                side_atom.transform.SetParent(bondedAtomsPlaces[i].transform);
-                side_atom.transform.SetPositionAndRotation(bondedAtomsPlaces[i].transform.position, Quaternion.identity);
-                core_atom.GetComponent<ChemistAtomModell>().CovalentBoundNumber++;
-                break;
+                if (bondedAtomsPlaces[i].transform.childCount == 0 &&core_atom.GetComponent<ChemistAtomModell>().CovalentBoundNumber<bondedAtomsPlaces.Count)//??
+                {
+                    side_atom.GetComponent<ChemistAtomModell>().is_in_a_bond = true;
+                    side_atom.transform.SetParent(bondedAtomsPlaces[i].transform);
+                    side_atom.transform.SetPositionAndRotation(bondedAtomsPlaces[i].transform.position, Quaternion.identity);
+                    core_atom.GetComponent<ChemistAtomModell>().CovalentBoundNumber += side_atom_valance;
+                    break;
+                }
             }
         }
     }
-
-    GameObject GetMoleculeStructure(int core_atom_valence, int core_atom_last_shell_population)
+    private void GetBond()
     {
-        int E = core_atom_last_shell_population - core_atom_valence;
-        if (core_atom_valence == 1) { }
-        //return 
-        else if (core_atom_valence == 2)
-        {
-            switch (E)
-            {
-                case 0:
-                    //lineáris
-                    break;
-                case 1:
-                    //V alakú 2 cuccal
-                    break;
-                case 2:
-                    //V alakú 1 cuccal
-                    break;
-                case 3:
-                    //lineáris
-                    break;
-            }
-        }
-        else if (core_atom_valence == 3)
-        {
-            switch (E)
-            {
-                case 0:
-                    //síkháromszög
-                    break;
-                case 1:
-                    //piramisos
-                    break;
-            }
-        }
-        else if (core_atom_valence == 4 && E == 0)
-        {
-            return Instantiate(playerSettings.ax4_e0);
-        }
-        else if (core_atom_valence == 5 && E == 0)
-        { }
-        else if (core_atom_valence == 6 && E == 0)
-        { }
-        else if (core_atom_valence == 7 && E == 0)
-        { }
-        else if (core_atom_valence == 8 && E == 0)
-        { }
-        return null;//return g;
+
+    }
+
+    GameObject GetMoleculeStructure(int core_atom_valence, int core_atom_last_shell_population) 
+    {
+        int E = (core_atom_last_shell_population - core_atom_valence)/2;
+        return Instantiate(playerSettings.GetCovalentModellFromValence(core_atom_valence, E));
     }
 
     public void GetDataFromTheList(ElementData e)

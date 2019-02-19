@@ -49,7 +49,7 @@ public class DragAndDropAtom : MonoBehaviour
             //update the position of the object in the world
             atom.transform.position = curPosition;
         }
-        if(Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1))
         {
             RaycastHit hitInf;
             DestroyAtom(Utility.GetClickedObject(out hitInf));
@@ -57,13 +57,15 @@ public class DragAndDropAtom : MonoBehaviour
     }
 
 
-   
+
 
     void DestroyAtom(GameObject atom)
     {
-        Destroy(atom);
+        if (atom != null)
+            Destroy(atom);
+        LoadElementsToList.RefreshButtonData(null);
     }
-   
+
     public void DropMouse()
     {
         _mouseState = false;

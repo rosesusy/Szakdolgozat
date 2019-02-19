@@ -6,13 +6,14 @@ public class Game : MonoBehaviour {
     public PlayerSettings playerSettings;
     public GameObject chemistAtomModel;
 
-    
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start() {
         GameObject chemistObj = Instantiate<GameObject>(chemistAtomModel);
         chemistObj.GetComponentInChildren<ChemistAtomModell>().symbol.text = playerSettings.currentAtom.symbol;
-        chemistObj.GetComponentInChildren<ChemistAtomModell>().LastShellPopulation = playerSettings.currentAtom.shells[playerSettings.currentAtom.shells.Length-1];
-        chemistObj.GetComponentInChildren<ChemistAtomModell>().Index = playerSettings.currentAtom.number-1;
+        chemistObj.GetComponentInChildren<ChemistAtomModell>().LastShellPopulation = playerSettings.currentAtom.shells[playerSettings.currentAtom.shells.Length - 1];
+        chemistObj.GetComponentInChildren<ChemistAtomModell>().Index = playerSettings.currentAtom.number - 1;
+        chemistObj.GetComponentInChildren<ChemistAtomModell>().Bond = BondTypes.None;
     }
 	
 	// Update is called once per frame

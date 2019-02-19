@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\GameData\PlayerSettings.cs" />
+    <Compile Include="Assets\Scripts\AtomUtility.cs" />
     <Compile Include="Assets\Scripts\BondTypes.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\CameraSript.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\ChemistAtomModell.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Assets\Scripts\LegoScreneSripts\LoadElementsToList.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\LoadToEnter.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\OnButtonClick.cs" />
+    <Compile Include="Assets\Scripts\LegoScreneSripts\PositionChildren.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\RefreshList.cs" />
     <Compile Include="Assets\Scripts\MenuSceneScripts\LoadSceneOnClick.cs" />
     <Compile Include="Assets\Scripts\MenuSceneScripts\QuitOnClick.cs" />

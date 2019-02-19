@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class Utility  {
-
+    //public static PlayerSettings playerSettings;
     public static List<GameObject> FindObjectsWithTag(this Transform parent, string tag) //ki lehet tenni egy helperbe
     {
         List<GameObject> taggedGameObjects = new List<GameObject>();
