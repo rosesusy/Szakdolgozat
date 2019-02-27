@@ -31,6 +31,10 @@ public class ChemistAtomModell : MonoBehaviour
             index = value;
         }
     }
+    public int CovalentConectedAtomPc
+    {
+        get; set;
+    }
     public int CovalentBoundNumber
     {
         get;set;
@@ -60,7 +64,6 @@ public class ChemistAtomModell : MonoBehaviour
     void Start()
     {
         playerSettings.SetAllCovalentModell();
-
         float x = this.transform.position.x;
         float y = this.transform.position.y;
         float z = this.transform.position.z;
@@ -98,8 +101,8 @@ public class ChemistAtomModell : MonoBehaviour
         int otherAtomNumber;
         int thisAtomNumber;
         ChemistAtomModell other_atom = other.gameObject.GetComponent<ChemistAtomModell>();
-        
-        if ( other_atom.Bond.Equals(BondTypes.Ionic) && (this.Bond.Equals(BondTypes.Ionic)||this.Bond.Equals(BondTypes.None))&& !other_atom.is_in_a_bond && this.ElectronCount > 0 && other_atom.ElectronCount > 0)
+
+        if (other_atom.Bond.Equals(BondTypes.Ionic) && (this.Bond.Equals(BondTypes.Ionic) || this.Bond.Equals(BondTypes.None)) && !other_atom.is_in_a_bond && this.ElectronCount > 0 && other_atom.ElectronCount > 0)
         {
 
             other.gameObject.GetComponent<DragAndDropAtom>().DropMouse();
@@ -133,7 +136,7 @@ public class ChemistAtomModell : MonoBehaviour
             }
 
         }
-       else if (other_atom.Bond.Equals(BondTypes.Covalent)&& (this.Bond.Equals(BondTypes.Covalent) || this.Bond.Equals(BondTypes.None)) &&!other_atom.is_in_a_bond)
+        else if (other_atom.Bond.Equals(BondTypes.Covalent) && (this.Bond.Equals(BondTypes.Covalent) || this.Bond.Equals(BondTypes.None)) && !other_atom.is_in_a_bond)
         {
             other.gameObject.GetComponent<DragAndDropAtom>().DropMouse();
             this.gameObject.GetComponent<DragAndDropAtom>().DropMouse();
@@ -144,7 +147,7 @@ public class ChemistAtomModell : MonoBehaviour
             int thisAtomValence = LoadPeriodicTable.table[thisAtomNumber].valence;
             int thisAtomLastShellNumber = this.LastShellPopulation;
 
-            if (other_atom.CovalentBoundNumber < otherAtomValence)
+            if(other_atom.CovalentConectedAtomPc < otherAtomValence)
             {
                 if (otherAtomNumber == thisAtomNumber)//ha ugyanazokat akrjuk összerakni
                 {
@@ -152,11 +155,11 @@ public class ChemistAtomModell : MonoBehaviour
                 }
                 else if (otherAtomValence > thisAtomValence)//ha a másik atom tud több atomhoz kapcsolódni, ő lesz a modell közepén
                 {
-                    CreateMolecula(other.gameObject, this.gameObject, otherAtomValence, otherAtomLastShellNumber,thisAtomValence);
+                    CreateMolecula(other.gameObject, this.gameObject, otherAtomValence, otherAtomLastShellNumber, thisAtomValence);
                 }
                 else//ha nem akkor pedig ez
                 {
-                    CreateMolecula(this.gameObject, other.gameObject, thisAtomValence, thisAtomLastShellNumber,otherAtomValence);
+                    CreateMolecula(this.gameObject, other.gameObject, thisAtomValence, thisAtomLastShellNumber, otherAtomValence);
                 }
             }
         }
@@ -187,47 +190,66 @@ public class ChemistAtomModell : MonoBehaviour
         }
     }
 
-    private void CreateMolecula(GameObject core_atom, GameObject side_atom,int core_atom_valence, int core_atom_last_shell_number, int side_atom_valance)
+    private void CreateMolecula(GameObject core_atom, GameObject side_atom, int core_atom_valence, int core_atom_last_shell_number, int side_atom_valance)
     {
         GameObject molecula = null;
-        if (core_atom.transform.parent == null)
+        GameObject oldmolecula = null;
+        if (core_atom.GetComponent<ChemistAtomModell>().CovalentConectedAtomPc < core_atom_valence&& core_atom.GetComponent<ChemistAtomModell>().CovalentBoundNumber <core_atom_valence)
         {
-            molecula = GetMoleculeStructure(core_atom_valence, core_atom_last_shell_number);//létrehozzuk a megfelelő molekulát
-        }
-        else
-        {
-            molecula = Utility.GetFinalParent(core_atom);
-        }
-        GameObject core = Utility.FindObjectWithTag(molecula.transform, "c_core_atom"); //lekérjük a coret
-        if (core != null)
-        {
-            core_atom.transform.SetParent(core.transform);//beilleszük a coreba a másik atomot
-            core_atom.transform.SetPositionAndRotation(core.transform.position, Quaternion.identity);
-            core_atom.GetComponent<ChemistAtomModell>().is_in_a_bond = true;
-            List<GameObject> bondedAtomsPlaces = Utility.FindObjectsWithTag(molecula.transform, "c_side_atom");//lekérjuk a csatlakozások helyét
-
-            for (int i = 0; i < bondedAtomsPlaces.Count; i++)
+            core_atom.GetComponent<ChemistAtomModell>().CovalentConectedAtomPc++;
+            if (core_atom_last_shell_number + side_atom_valance <= 8)
             {
-                if (bondedAtomsPlaces[i].transform.childCount == 0 &&core_atom.GetComponent<ChemistAtomModell>().CovalentBoundNumber<bondedAtomsPlaces.Count)//??
+                if (side_atom_valance > 3)
                 {
-                    side_atom.GetComponent<ChemistAtomModell>().is_in_a_bond = true;
-                    side_atom.transform.SetParent(bondedAtomsPlaces[i].transform);
-                    side_atom.transform.SetPositionAndRotation(bondedAtomsPlaces[i].transform.position, Quaternion.identity);
+                    side_atom.GetComponent<ChemistAtomModell>().CovalentBoundNumber = 3;
+                    core_atom.GetComponent<ChemistAtomModell>().CovalentBoundNumber += 3;
+                }
+                else
+                {
+                    side_atom.GetComponent<ChemistAtomModell>().CovalentBoundNumber = side_atom_valance;
                     core_atom.GetComponent<ChemistAtomModell>().CovalentBoundNumber += side_atom_valance;
-                    break;
                 }
             }
+            else
+            {
+                side_atom.GetComponent<ChemistAtomModell>().CovalentBoundNumber = 1;
+                core_atom.GetComponent<ChemistAtomModell>().CovalentBoundNumber++;
+            }
+        }
+
+        if (core_atom.transform.parent == null)
+        {
+            molecula = GetMoleculeStructure(core_atom_valence, core_atom_last_shell_number, core_atom.GetComponent<ChemistAtomModell>().CovalentConectedAtomPc);//létrehozzuk a megfelelő molekulát
+        }
+        else { 
+            oldmolecula = Utility.GetFinalParent(core_atom);
+            molecula = GetMoleculeStructure(core_atom_valence, core_atom_last_shell_number, core_atom.GetComponent<ChemistAtomModell>().CovalentConectedAtomPc);//létrehozzuk a megfelelő molekulát
+            oldmolecula.GetComponent<CovalentMoleculaManager>().CopyAtomsAndBodsTo(molecula);
+            Destroy(oldmolecula);
+        }
+        if (molecula.GetComponent<CovalentMoleculaManager>().SetCoreAtom(core_atom))
+            core_atom.GetComponent<ChemistAtomModell>().is_in_a_bond = true;
+        if (molecula.GetComponent<CovalentMoleculaManager>().PutSideAtoms(side_atom))
+        {
+           // molecula.GetComponent<CovalentMoleculaManager>().CreateBond(side_atom, core_atom);
+            side_atom.GetComponent<ChemistAtomModell>().is_in_a_bond = true;
         }
     }
-    private void GetBond()
+  
+    GameObject GetMoleculeStructure(int core_atom_valence, int core_atom_last_shell_population, int connected_atom_pc)
     {
-
-    }
-
-    GameObject GetMoleculeStructure(int core_atom_valence, int core_atom_last_shell_population) 
-    {
-        int E = (core_atom_last_shell_population - core_atom_valence)/2;
-        return Instantiate(playerSettings.GetCovalentModellFromValence(core_atom_valence, E));
+        GameObject prefab;
+        int E = (core_atom_last_shell_population - core_atom_valence) / 2;
+        int X = connected_atom_pc;
+        try
+        {
+            prefab = playerSettings.GetCovalentModellFromValence(X, E);
+        }
+        catch
+        {
+            prefab = playerSettings.GetCovalentModellFromValence(core_atom_valence, E);
+        }
+        return Instantiate(prefab);
     }
 
     public void GetDataFromTheList(ElementData e)

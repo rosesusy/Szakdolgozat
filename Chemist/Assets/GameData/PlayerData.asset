@@ -31,10 +31,10 @@ MonoBehaviour:
   ax2e2: {fileID: 1960078881957270, guid: 0118f318680315146a54dea3a447f3f3, type: 2}
   ax3e0: {fileID: 1521586908558250, guid: af9dfed3354d20947a1bcef8f3010dcb, type: 2}
   ax3e1: {fileID: 1569155690578380, guid: 5dd0e42ce30582d4db7bcc43bc33a6ae, type: 2}
-  ax5e0: {fileID: 0}
-  ax6e0: {fileID: 0}
-  ax7e0: {fileID: 0}
-  ax8e0: {fileID: 0}
+  ax5e0: {fileID: 1181577976898234, guid: e3d040742eb2a904e85f6823f145146a, type: 2}
+  ax6e0: {fileID: 1472180583955554, guid: d3584f2f9c9946e499c695ee31667291, type: 2}
+  ax7e0: {fileID: 1824238707645658, guid: c6feaf1134123b64aa0096c915e06979, type: 2}
+  ax8e0: {fileID: 1563237271881776, guid: cfab9bbb548a9d64c8923f72bc3bf42d, type: 2}
   currentAtom:
     name: Carbon
     appearance: 

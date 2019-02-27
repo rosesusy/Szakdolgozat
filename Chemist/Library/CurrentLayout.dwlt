@@ -108,10 +108,10 @@ MonoBehaviour:
     y: 30
     width: 1904
     height: 931
-  m_MinSize: {x: 915, y: 321}
-  m_MaxSize: {x: 22012, y: 10021}
+  m_MinSize: {x: 911, y: 321}
+  m_MaxSize: {x: 22008, y: 10021}
   vertical: 0
-  controlID: 10
+  controlID: 77
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 321}
   m_MaxSize: {x: 4002, y: 8021}
   vertical: 1
-  controlID: 11
+  controlID: 78
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -154,8 +154,8 @@ MonoBehaviour:
     y: 0
     width: 1078
     height: 446
-  m_MinSize: {x: 102, y: 121}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -205,8 +205,8 @@ MonoBehaviour:
     y: 0
     width: 215
     height: 931
-  m_MinSize: {x: 204, y: 221}
-  m_MaxSize: {x: 4004, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -592,9 +592,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: fc90a4fffe90a4ff0091a4ff4491a4ff4691a4ff4891a4ff7c91a4ff7e91a4ffb291a4ffb491a4ffe891a4ffea91a4ff0e92a4ff52b7a4ff64b7a4ff6ab7a4ff86b7a4ff98b7a4ff9eb7a4ff74baa4ff6602a5ff7802a5ff7e02a5ff4205a5ff5405a5ff5a05a5ff9205a5ffa405a5ffaa05a5ffe205a5fff405a5fffa05a5ffcabfb4ffccbfb4ffcebfb4ff10c0b4ff12c0b4ff14c0b4ff40c0b4ff42c0b4ff6ec0b4ff70c0b4ff9cc0b4ff9ec0b4ffbcc0b4ff7ce1b5ff50eeb5ff56eeb5ff9c7ef0ff7e56f6ff8656f6ff9056f6ff9656f6ff0e6cf6ff5ec8f7ff30c9f7ff38c9f7ff5ac9f7ffd0ddf7ffb210f8ffc410f8ffd610f8ffe810f8fff210f8fff810f8ffec11f8ffb425f8ff14bcf8ff26bcf8ff38bcf8ff42bcf8ff4abcf8ff54bcf8ff5abcf8ff06bdf8ffdad0f8fffefaffff00000000
+    m_SelectedIDs: 663a0000
+    m_LastClickedID: 14950
+    m_ExpandedIDs: f633a1ff0a34a1ff1e34a1ff2834a1ff3234a1ff4434a1ffa434a1ff9c4fa1ffcc4fa1ffd83ba4ffda3ba4ffdc3ba4ffde3ba4ff7e8aa5ff808aa5ff828aa5ff7ca2a5ff7ea2a5ff80a2a5ff82a2a5ff3ed9a5ff52d9a5ff66d9a5ff7ad9a5ff82d9a5ff105ba6ffba6fa6ffc46fa6ffce6fa6ffd66fa6ff5c7ab7ff18bbbbff1cbbbbff00fbffff00000000de3a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -667,7 +667,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: b6280000
     m_LastClickedID: 10422
-    m_ExpandedIDs: 00000000d82f00008e300000e8300000f8300000063100000c31000046310000dc31000056320000fc320000323300004c340000ae3400001435000078350000b2360000fc36000028370000ce370000bc3a0000be3a0000c03a0000c23a0000c43a0000c63a0000c83a0000ca3a0000cc3a0000ce3a0000d03a0000d23a0000
+    m_ExpandedIDs: 00000000d42f0000cc3000005c3100006c3100007a310000803100005a320000e8320000fa33000038350000b635000052360000223800006c38000098380000563900009c3f00009e3f0000a03f0000a23f0000a43f0000a63f0000a83f0000aa3f0000ac3f0000ae3f0000b03f0000b23f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -692,10 +692,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 0}
+    scrollPos: {x: 0, y: 60}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff00000000d82f00008e300000e8300000f8300000063100000c310000dc31000056320000323300004c340000ae340000143500003c360000b2360000fc36000028370000ce370000bc3a0000be3a0000c03a0000c23a0000c43a0000c63a0000c83a0000ca3a0000cc3a0000ce3a0000d03a0000d23a0000
+    m_ExpandedIDs: ffffffff00000000d42f0000cc3000005c3100006c3100007a310000803100005a320000e8320000fa33000038350000b635000052360000223800006c38000098380000563900009c3f00009e3f0000a03f0000a23f0000a43f0000a63f0000a83f0000aa3f0000ac3f0000ae3f0000b03f0000b23f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -803,10 +803,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1334
-    y: 92
-    width: 586
-    height: 926
+    x: 1601
+    y: 100
+    width: 311
+    height: 910
   m_PersistentViewDataDictionary: {fileID: 0}
   m_InitialOpenURL: https://public-cdn.cloud.unity3d.com/editor/production/cloud/hub
   m_GlobalObjectTypeName: 

@@ -12,6 +12,7 @@ TagManager:
   - chemistElectronModel
   - c_side_atom
   - c_core_atom
+  - c_bond_tube
   layers:
   - Default
   - TransparentFX

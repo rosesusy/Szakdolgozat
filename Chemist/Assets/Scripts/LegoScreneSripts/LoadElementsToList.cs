@@ -140,7 +140,7 @@ public class LoadElementsToList : MonoBehaviour
         if (bond.Equals(BondTypes.Covalent))
         {
             //TODO:Megcsinálni a kovalens kötéshez
-            return LoadPeriodicTable.table[current_atom_modell.Index].valence - current_atom_modell.CovalentBoundNumber / (float)bonding_atom.valence;
+            return LoadPeriodicTable.table[current_atom_modell.Index].valence - current_atom_modell.CovalentConectedAtomPc / (float)bonding_atom.valence;
         }
         else if (bond.Equals(BondTypes.Ionic))
         {

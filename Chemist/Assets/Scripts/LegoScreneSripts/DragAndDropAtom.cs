@@ -6,9 +6,11 @@ public class DragAndDropAtom : MonoBehaviour
 {
 
     private bool _mouseState;
+    private bool _rotate;
     private GameObject atom;
     private Vector3 screenSpace;
     private Vector3 offset;
+    private float rotSpeed = 20;
 
     // Use this for initialization
     void Start()
@@ -54,6 +56,22 @@ public class DragAndDropAtom : MonoBehaviour
             RaycastHit hitInf;
             DestroyAtom(Utility.GetClickedObject(out hitInf));
         }
+        if(Input.GetMouseButtonDown(2))
+        {
+            _rotate = true;
+        }
+        if (Input.GetMouseButtonUp(2))
+        {
+            _rotate = false;
+        }
+        if(_rotate)
+        {
+            float rotX = Input.GetAxis("Mouse X") * rotSpeed * Mathf.Deg2Rad;
+            float rotY = Input.GetAxis("Mouse Y") * rotSpeed * Mathf.Deg2Rad;
+
+            transform.RotateAround(Vector3.up, -rotX);
+            transform.RotateAround(Vector3.right, rotY);
+        }
     }
 
 
@@ -69,5 +87,6 @@ public class DragAndDropAtom : MonoBehaviour
     public void DropMouse()
     {
         _mouseState = false;
+        _rotate = false;
     }
 }
