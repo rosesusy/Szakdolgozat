@@ -41,6 +41,7 @@ public class PlayerSettings : ScriptableObject
         if (models.Count == 0)
         {
             models.Add("40", ax4_e0);
+            models.Add("10", ax1e3);//debug miatt
             models.Add("13", ax1e3);
             models.Add("20", ax2e0);
             models.Add("21", ax2e1);
@@ -62,6 +63,11 @@ public class PlayerSettings : ScriptableObject
     /// <returns></returns>
     public GameObject GetCovalentModellFromValence(int valence, int E)
     {
-        return models[string.Format("{0}{1}", valence, E)];
+        GameObject temp;
+        if (models.ContainsKey(string.Format("{0}{1}", valence, E)))
+            temp = models[string.Format("{0}{1}", valence, E)];
+        else
+            temp = models[string.Format("{0}{1}", valence, 0)];
+        return temp;
     }
 }
