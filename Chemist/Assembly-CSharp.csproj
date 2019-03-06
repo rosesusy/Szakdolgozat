@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\LegoScreneSripts\OnButtonClick.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\PositionChildren.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\PositionElectronsInABond.cs" />
+    <Compile Include="Assets\Scripts\LegoScreneSripts\PositionMetalicAtom.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\RefreshList.cs" />
     <Compile Include="Assets\Scripts\MenuSceneScripts\LoadSceneOnClick.cs" />
     <Compile Include="Assets\Scripts\MenuSceneScripts\QuitOnClick.cs" />

@@ -95,6 +95,10 @@ public class ChemistAtomModell : MonoBehaviour
                 valenceElectrons[i].transform.Translate(new Vector3(MIN_DISTANCE, 0, 0));
             }
             changeElectrons = false;
+        }else if(valenceElectrons.Count==0)
+        {
+
+            changeElectrons = false;
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -102,12 +106,12 @@ public class ChemistAtomModell : MonoBehaviour
         int otherAtomNumber;
         int thisAtomNumber;
         ChemistAtomModell other_atom = other.gameObject.GetComponent<ChemistAtomModell>();
-
+        other.gameObject.GetComponent<DragAndDropAtom>().DropMouse();
+        this.gameObject.GetComponent<DragAndDropAtom>().DropMouse();
         if (other_atom.Bond.Equals(BondTypes.Ionic) && (this.Bond.Equals(BondTypes.Ionic) || this.Bond.Equals(BondTypes.None)) && !other_atom.is_in_a_bond && this.ElectronCount > 0 && other_atom.ElectronCount > 0)
         {
 
-            other.gameObject.GetComponent<DragAndDropAtom>().DropMouse();
-            this.gameObject.GetComponent<DragAndDropAtom>().DropMouse();
+            
             otherAtomNumber = other_atom.Index;
             thisAtomNumber = this.Index;
             if (LoadPeriodicTable.table[otherAtomNumber].electronnegativity > LoadPeriodicTable.table[thisAtomNumber].electronnegativity)
@@ -121,7 +125,6 @@ public class ChemistAtomModell : MonoBehaviour
                     this.CreateIon(other.gameObject, this.gameObject);
                     LoadElementsToList.RefreshButtonData(other.gameObject);
                 }
-
             }
             else
             {
@@ -135,12 +138,10 @@ public class ChemistAtomModell : MonoBehaviour
                     LoadElementsToList.RefreshButtonData(this.gameObject);
                 }
             }
-
         }
-        else if (other_atom.Bond.Equals(BondTypes.Covalent) && (this.Bond.Equals(BondTypes.Covalent) || this.Bond.Equals(BondTypes.None)) && !other_atom.is_in_a_bond&&!other_atom.is_side_atom&&!this.is_side_atom)
+        else if (other_atom.Bond.Equals(BondTypes.Covalent) && (this.Bond.Equals(BondTypes.Covalent) || this.Bond.Equals(BondTypes.None)) && !other_atom.is_in_a_bond && !other_atom.is_side_atom && !this.is_side_atom)
         {
-            other.gameObject.GetComponent<DragAndDropAtom>().DropMouse();
-            this.gameObject.GetComponent<DragAndDropAtom>().DropMouse();
+           
             otherAtomNumber = other_atom.Index;
             thisAtomNumber = this.Index;
             int otherAtomValence = LoadPeriodicTable.table[otherAtomNumber].valence;
@@ -152,17 +153,83 @@ public class ChemistAtomModell : MonoBehaviour
             {
                 if (otherAtomNumber == thisAtomNumber)//ha ugyanazokat akrjuk összerakni
                 {
-
+                    CreateMolecula(other.gameObject, this.gameObject, otherAtomValence, otherAtomLastShellNumber, thisAtomValence);
+                    LoadElementsToList.RefreshButtonData(other.gameObject);
                 }
                 else if (otherAtomValence > thisAtomValence)//ha a másik atom tud több atomhoz kapcsolódni, ő lesz a modell közepén
                 {
                     CreateMolecula(other.gameObject, this.gameObject, otherAtomValence, otherAtomLastShellNumber, thisAtomValence);
+                    LoadElementsToList.RefreshButtonData(other.gameObject);
                 }
                 else//ha nem akkor pedig ez
                 {
                     CreateMolecula(this.gameObject, other.gameObject, thisAtomValence, thisAtomLastShellNumber, otherAtomValence);
+                    LoadElementsToList.RefreshButtonData(this.gameObject);
                 }
             }
+        }
+        else if (other_atom.Bond.Equals(BondTypes.Metalic) && (this.Bond.Equals(BondTypes.Metalic) || this.Bond.Equals(BondTypes.None)) && !other_atom.is_in_a_bond)
+        {
+           
+            CreateMetal(other.gameObject, this.gameObject, other_atom.index + 1, this.index + 1);
+            this.is_in_a_bond = true;
+            other_atom.is_in_a_bond = true;
+            for (int i = 0; i < this.valenceElectrons.Count; i++)
+            {
+                this.valenceElectrons[i].SetActive(false);
+            }
+            for (int i = 0; i < other_atom.ElectronCount; i++)
+            {
+                other_atom[i].SetActive(false);
+            }
+            this.changeElectrons = true;
+            other_atom.changeElectrons = true;
+        }
+    }
+    private void CreateMetal(GameObject other, GameObject this_one, int other_electron_number, int this_one_electron_number) //HÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖRRRRRRRRRR \m/
+    {
+        Transform oldMetal;
+        if (other.transform.parent != null)
+        {
+            oldMetal = other.transform.parent;
+            this_one.transform.SetParent(oldMetal.transform);
+            PositionMetalicAtom old_one = oldMetal.GetComponent<PositionMetalicAtom>();
+            old_one.current_in_a_cloud++;
+            old_one.transform.GetChild(0).GetComponent<ParticleSystem>().maxParticles += this_one_electron_number;
+            old_one.transform.GetChild(0).GetComponent<ParticleSystem>().emissionRate += this_one_electron_number;
+            if (old_one.Max_in_a_cloud < old_one.current_in_a_cloud)
+            {
+                old_one.max_number_in_a_row++;
+                ParticleSystem.ShapeModule shapeModule = old_one.transform.GetChild(0).GetComponent<ParticleSystem>().shape;
+                shapeModule.radius++;
+            }
+            old_one.IsModified = true;
+        }
+        else if (this_one.transform.parent != null)
+        {
+            oldMetal = this_one.transform.parent;
+            other.gameObject.transform.SetParent(oldMetal.transform);
+            PositionMetalicAtom old_one = oldMetal.GetComponent<PositionMetalicAtom>();
+            old_one.current_in_a_cloud++;
+            old_one.transform.GetChild(0).GetComponent<ParticleSystem>().maxParticles += other_electron_number;
+            old_one.transform.GetChild(0).GetComponent<ParticleSystem>().emissionRate += other_electron_number;
+            if (old_one.Max_in_a_cloud < old_one.current_in_a_cloud)
+            {
+                old_one.max_number_in_a_row++;
+                ParticleSystem.ShapeModule shapeModule = old_one.transform.GetChild(0).GetComponent<ParticleSystem>().shape;
+                shapeModule.radius++;
+            }
+            old_one.IsModified = true;
+        }
+        else
+        {
+            GameObject newMetal = Instantiate(playerSettings.metalModell);
+            other.gameObject.transform.SetParent(newMetal.transform);
+            this_one.transform.SetParent(newMetal.transform);
+            newMetal.GetComponent<PositionMetalicAtom>().max_number_in_a_row = 2;
+            newMetal.GetComponent<PositionMetalicAtom>().IsModified = true;
+            newMetal.transform.GetChild(0).GetComponent<ParticleSystem>().maxParticles = other_electron_number + this_one_electron_number;
+            newMetal.transform.GetChild(0).GetComponent<ParticleSystem>().emissionRate = other_electron_number + this_one_electron_number;
         }
     }
     private void CopyElectronsToOtherAtom(ChemistAtomModell from, ChemistAtomModell to)
@@ -190,7 +257,6 @@ public class ChemistAtomModell : MonoBehaviour
             this_one.transform.SetParent(newIon.transform);
         }
     }
-
     private void CreateMolecula(GameObject core_atom, GameObject side_atom, int core_atom_valence, int core_atom_last_shell_number, int side_atom_valance)
     {
         GameObject molecula = null;
@@ -238,8 +304,7 @@ public class ChemistAtomModell : MonoBehaviour
             side_atom.GetComponent<ChemistAtomModell>().is_side_atom = true;
         }
     }
-
-    GameObject GetMoleculeStructure(int core_atom_valence, int core_atom_last_shell_population, int connected_atom_pc)
+    private GameObject GetMoleculeStructure(int core_atom_valence, int core_atom_last_shell_population, int connected_atom_pc)
     {
         GameObject prefab;
         int E = (core_atom_last_shell_population - core_atom_valence) / 2;

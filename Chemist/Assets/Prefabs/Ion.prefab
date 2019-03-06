@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4415351735670564}
   - component: {fileID: 114388974127753250}
-  - component: {fileID: 114164539721598702}
   - component: {fileID: 54753719292058266}
   m_Layer: 0
   m_Name: Ion
@@ -57,17 +56,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114164539721598702
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1475965461004284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95d9e4a75597af240bd97f0461dfd73b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114388974127753250
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -79,4 +67,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d24032f8ea3118e42b6fa858dac341f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanDrag: 1

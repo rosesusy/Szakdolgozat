@@ -24,6 +24,8 @@ MonoBehaviour:
   chemistElectronModel: {fileID: 1514983806594818, guid: fd2fddd244fd30f4cbbfca4bd6cb88d5,
     type: 2}
   ionModell: {fileID: 1475965461004284, guid: b6da1601c3cca454f86f243c65050c10, type: 2}
+  metalModell: {fileID: 1235235186339644, guid: bed21e24f13609f4ab2e79ecd640692e,
+    type: 2}
   ax4_e0: {fileID: 1559131484424096, guid: 76a28cbabc8ac1c43befad98a4dd28e1, type: 2}
   ax1e3: {fileID: 1744063153096700, guid: 0e65e174e60b78d43886724a91710c5d, type: 2}
   ax2e0: {fileID: 1193727267503714, guid: 3a649a3ed4b2c69408f1e6af9d32bc68, type: 2}

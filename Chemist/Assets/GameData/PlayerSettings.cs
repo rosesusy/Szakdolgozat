@@ -13,6 +13,7 @@ public class PlayerSettings : ScriptableObject
     public GameObject atomButtonPrefab;
     public GameObject chemistElectronModel;
     public GameObject ionModell;
+    public GameObject metalModell;
 
     public GameObject ax4_e0;
     public GameObject ax1e3;

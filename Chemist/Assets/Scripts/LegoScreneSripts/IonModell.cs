@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IonModell : MonoBehaviour {
 
-    public BondTypes Bond { get; set; }
+    
 
     // Use this for initialization
     void Start () {
