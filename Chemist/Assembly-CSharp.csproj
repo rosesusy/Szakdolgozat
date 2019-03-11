@@ -73,12 +73,15 @@
     <Compile Include="Assets\Scripts\LegoScreneSripts\Game.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\IonModell.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\LoadElementsToList.cs" />
-    <Compile Include="Assets\Scripts\LegoScreneSripts\LoadToEnter.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\OnButtonClick.cs" />
+    <Compile Include="Assets\Scripts\LegoScreneSripts\OnClickDeleteCurrentAtom.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\PositionChildren.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\PositionElectronsInABond.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\PositionMetalicAtom.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\RefreshList.cs" />
+    <Compile Include="Assets\Scripts\LoadOnEnterSceneLego.cs" />
+    <Compile Include="Assets\Scripts\LoadOnEnterSceneMenu.cs" />
+    <Compile Include="Assets\Scripts\LoadOnEnterScenePeriod.cs" />
     <Compile Include="Assets\Scripts\MenuSceneScripts\LoadSceneOnClick.cs" />
     <Compile Include="Assets\Scripts\MenuSceneScripts\QuitOnClick.cs" />
     <Compile Include="Assets\Scripts\MenuSceneScripts\QuitOnEnter.cs" />
@@ -89,7 +92,6 @@
     <Compile Include="Assets\Scripts\PeriodTableSceneScripts\ElementData.cs" />
     <Compile Include="Assets\Scripts\PeriodTableSceneScripts\ElementDataAll.cs" />
     <Compile Include="Assets\Scripts\PeriodTableSceneScripts\LoadNextScene.cs" />
-    <Compile Include="Assets\Scripts\PeriodTableSceneScripts\LoadOnEnter.cs" />
     <Compile Include="Assets\Scripts\PeriodTableSceneScripts\LoadPeriodicTable.cs" />
     <Compile Include="Assets\Scripts\PeriodTableSceneScripts\PeriodicTableBoxElementAndTextes.cs" />
     <Compile Include="Assets\Scripts\Utility.cs" />
