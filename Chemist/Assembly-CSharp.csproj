@@ -73,6 +73,8 @@
     <Compile Include="Assets\Scripts\LegoScreneSripts\Game.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\IonModell.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\LoadElementsToList.cs" />
+    <Compile Include="Assets\Scripts\LegoScreneSripts\LoadHelpPicture.cs" />
+    <Compile Include="Assets\Scripts\LegoScreneSripts\OKButton_script.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\OnButtonClick.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\OnClickDeleteCurrentAtom.cs" />
     <Compile Include="Assets\Scripts\LegoScreneSripts\PositionChildren.cs" />
